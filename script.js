@@ -9,7 +9,7 @@ semTarefa.innerText = `Nenhuma tarefa para você fazer. Crie tarefas no painel a
 btnCriar.addEventListener('click', (e) => {
     e.preventDefault;
 
-    if(semTarefa) {
+    if(semTarefa && inputTarefa.value !== '') {
         semTarefa.remove();
     }
 
@@ -34,8 +34,12 @@ btnCriar.addEventListener('click', (e) => {
     tarefa.appendChild(tituloTarefa);
     tarefa.appendChild(btnsDiv);
 
-    tituloTarefa.innerText = `${inputTarefa.value}`;
-    listaTarefas.appendChild(tarefa);
+    if(inputTarefa.value !== '') {
+        tituloTarefa.innerText = `${inputTarefa.value}`;
+        listaTarefas.appendChild(tarefa);
+    }
+
+    inputTarefa.value = '';
 })
 
 listaTarefas.appendChild(semTarefa);
