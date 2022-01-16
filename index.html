@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Atarefalho</title>
+</head>
+<body>
+    <header class="cabecalho">
+        <h1 class="logo">Atarefalho.</h1>
+    </header>
+    <main class="container">
+        <section class="criar-tarefa">
+            <div class="criador">
+                <label for="tarefa" class="title">Criar tarefas</label>
+                <textarea name="tarefa" class="input-tarefa" cols="30" rows="4" placeholder="Ex.: Arrumar bugs" data-input></textarea>
+                <button type="submit" class="btn criando-tarefa" data-btn-criar>Criar tarefa</button>
+            </div>
+        </section>
+        <section class="tarefas">
+            <ul class="lista-tarefas" data-lista-tarefas>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

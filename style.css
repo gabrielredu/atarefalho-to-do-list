@@ -1,0 +1,141 @@
+body, header, h1, h2, div, main, sectino, ul, li, label, input, button, p {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.btn {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.cabecalho {
+    background-color: #AABEE3;
+    border-radius: 8px;
+    margin: 16px;
+    padding: 16px 0;
+    text-align: center;
+}
+
+.logo {
+    color: #5156ac;
+    font-size: 32px;
+}
+
+.container {
+    display: flex;
+    gap: 16px;
+    margin: 16px;
+    margin-bottom: 0;
+}
+
+.criador {
+    background-color: #5156ac;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - (69px + 32px));
+    padding: 24px 16px;
+    padding-bottom: 0;
+    max-width: 273px;
+}
+
+.criador .title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.criador .input-tarefa {
+    border: none;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 8px;
+    max-width: calc(273px - 32px);
+    min-width: calc(273px - 32px);
+}
+
+.btn.criando-tarefa {
+    background-color: #AABEE3;
+    color: #5156ac;
+    max-width: calc(273px - 32px);
+    min-width: calc(273px - 32px);
+    transition: all 200ms linear;
+}
+
+.btn.criando-tarefa:hover {
+    background-color: #fff;
+}
+
+.lista-tarefas {
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.tarefa {
+    background-color: #eeeeee;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 267px;
+    min-width: 267px;
+}
+
+.btns {
+    background-color: #AABEE3;
+    border-radius: 8px;
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+}
+
+.tarefa .btn.concluir {
+    background-color: #5156ac;
+    color: #fff;
+    transition: all 200ms linear;
+}
+
+.tarefa .btn.excluir {
+    background: none;
+    border: 1px solid #5156ac;
+    color: #5156ac;
+    transition: all 200ms linear;
+}
+
+.tarefa .btn.concluir:hover {
+    background-color: #fff;
+    color: #5156ac;
+}
+
+.tarefa .btn.excluir:hover {
+    border: 1px solid rgb(231, 71, 71);
+    color: rgb(231, 71, 71);
+}
+
+.tarefa .title-tarefa {
+    padding: 16px;
+    padding-bottom: 0;
+    margin-bottom: 16px;
+}
+
+.sem-tarefa {
+    color: #bbb;
+    font-size: 32px;
+    font-weight: 100;
+    width: 500px;
+}
