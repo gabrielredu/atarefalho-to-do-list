@@ -76,7 +76,6 @@ function excluir(tarefa) {
 function concluir(tarefa) {
     arrayTarefas[tarefa.dataset.id].Finalizada = true;
     tarefa.classList.add('concluida');
-    console.log(arrayTarefas);
 }
 
 btnCriar.addEventListener('click', (e) => {
