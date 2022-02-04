@@ -5,57 +5,83 @@ const listaTarefas = document.querySelector('[data-lista-tarefas]');
 const semTarefa = document.createElement('h2');
 semTarefa.classList.add('sem-tarefa');
 semTarefa.innerText = `Nenhuma tarefa para você fazer. Crie tarefas no painel a esquerda.`;
+listaTarefas.appendChild(semTarefa);
 
 let arrayTarefas = [];
 
-function criar () {
+function criar() {
     if(inputTarefa.value !== '') {
         let objTarefa = {
-            'Tarefa':`${inputTarefa.value}`, 
+            'Tarefa':inputTarefa.value, 
             'Finalizada':false
-    };
-        arrayTarefas.push(objTarefa);
-    }
+        };
 
+        arrayTarefas.push(objTarefa);
+
+        inputTarefa.value = '';
+    }
+}
+
+function render() {
+    listaTarefas.innerHTML = '';
+
+    semTarefa.remove();
+
+    if(arrayTarefas.length > 0) {
+
+        arrayTarefas.forEach((trf, index) => {
+            const tarefa = document.createElement('li');
+            const tituloTarefa = document.createElement('p');
+            const btnsDiv = document.createElement('div');
+            const btnConcluir = document.createElement('button');
+            const btnExcluir = document.createElement('button');
+
+            btnConcluir.innerText = `Concluir`;
+            btnExcluir.innerText = `Excluir`;
+
+            tarefa.classList.add('tarefa');
+            tituloTarefa.classList.add('title-tarefa');
+            btnsDiv.classList.add('btns');
+            btnConcluir.classList.add('btn', 'concluir');
+            btnExcluir.classList.add('btn', 'excluir');
+
+            btnsDiv.appendChild(btnConcluir);
+            btnsDiv.appendChild(btnExcluir);
+
+            tarefa.appendChild(tituloTarefa);
+            tarefa.appendChild(btnsDiv);
+
+            btnExcluir.addEventListener('click', () => excluir(tarefa));
+            btnConcluir.addEventListener('click', () => concluir(tarefa));
+
+            tituloTarefa.innerText = trf.Tarefa;
+            tarefa.dataset.id = index;
+
+            listaTarefas.appendChild(tarefa);
+        })
+
+    } else {
+        const semTarefa = document.createElement('h2');
+        semTarefa.classList.add('sem-tarefa');
+        semTarefa.innerText = `Nenhuma tarefa para você fazer. Crie tarefas no painel a esquerda.`;
+        listaTarefas.appendChild(semTarefa);
+    }
+}
+
+function excluir(tarefa) {
+    arrayTarefas.splice(tarefa.dataset.id, 1);
+    render();
+}
+
+function concluir(tarefa) {
+    arrayTarefas[tarefa.dataset.id].Finalizada = true;
+    tarefa.classList.add('concluida');
     console.log(arrayTarefas);
 }
 
-function render () {
-    const tarefa = document.createElement('li');
-    const tituloTarefa = document.createElement('p');
-    const btnsDiv = document.createElement('div');
-    const btnConcluir = document.createElement('button');
-    const btnExcluir = document.createElement('button');
-
-    btnConcluir.innerText = `Concluir`;
-    btnExcluir.innerText = `Excluir`;
-
-    tarefa.classList.add('tarefa');
-    tituloTarefa.classList.add('title-tarefa');
-    btnsDiv.classList.add('btns');
-    btnConcluir.classList.add('btn', 'concluir');
-    btnExcluir.classList.add('btn', 'excluir');
-
-    btnsDiv.appendChild(btnConcluir);
-    btnsDiv.appendChild(btnExcluir);
-
-    tarefa.appendChild(tituloTarefa);
-    tarefa.appendChild(btnsDiv);
-    
-    if(semTarefa && inputTarefa.value !== '') {
-        arrayTarefas.forEach((trf) => {
-            tituloTarefa.innerText = trf.Tarefa;
-            listaTarefas.appendChild(tarefa);
-            semTarefa.remove();
-            inputTarefa.value = '';
-        })
-    }
-}
-
 btnCriar.addEventListener('click', (e) => {
-    e.preventDefault;
+    e.preventDefault();
+
     criar();
     render();
 })
-
-listaTarefas.appendChild(semTarefa);
