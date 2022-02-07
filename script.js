@@ -36,8 +36,21 @@ function render() {
             const btnConcluir = document.createElement('button');
             const btnExcluir = document.createElement('button');
 
+            const mediaQuery = window.matchMedia('(max-width: 640px)');
+
             btnConcluir.innerText = `Concluir`;
             btnExcluir.innerText = `Excluir`;
+
+            function mobileQuery(e) {
+                if (e.matches) {
+                    btnConcluir.innerText = '';
+                    btnExcluir.innerText = '';
+                }
+            }
+
+            mediaQuery.addEventListener('change', mobileQuery);
+
+            mobileQuery(mediaQuery);
 
             tarefa.classList.add('tarefa');
             tituloTarefa.classList.add('title-tarefa');
