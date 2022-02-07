@@ -38,13 +38,13 @@ function render() {
 
             const mediaQuery = window.matchMedia('(max-width: 640px)');
 
-            btnConcluir.innerText = `Concluir`;
-            btnExcluir.innerText = `Excluir`;
-
             function mobileQuery(e) {
                 if (e.matches) {
                     btnConcluir.innerText = '';
                     btnExcluir.innerText = '';
+                } else {
+                    btnConcluir.innerText = `Concluir`;
+                    btnExcluir.innerText = `Excluir`;
                 }
             }
 
