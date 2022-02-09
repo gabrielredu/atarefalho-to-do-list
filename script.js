@@ -29,7 +29,7 @@ function render() {
 
     if(arrayTarefas.length > 0) {
 
-        arrayTarefas.forEach((trf, index) => {
+        arrayTarefas.forEach((task, index) => {
             const tarefa = document.createElement('li');
             const tituloTarefa = document.createElement('p');
             const btnsDiv = document.createElement('div');
@@ -58,6 +58,10 @@ function render() {
             btnConcluir.classList.add('btn', 'concluir');
             btnExcluir.classList.add('btn', 'excluir');
 
+            if(task.Finalizada) {
+                tarefa.classList.add('concluida');
+            }
+
             btnsDiv.appendChild(btnConcluir);
             btnsDiv.appendChild(btnExcluir);
 
@@ -67,7 +71,7 @@ function render() {
             btnExcluir.addEventListener('click', () => excluir(tarefa));
             btnConcluir.addEventListener('click', () => concluir(tarefa));
 
-            tituloTarefa.innerText = trf.Tarefa;
+            tituloTarefa.innerText = task.Tarefa;
             tarefa.dataset.id = index;
 
             listaTarefas.appendChild(tarefa);
@@ -84,11 +88,36 @@ function render() {
 function excluir(tarefa) {
     arrayTarefas.splice(tarefa.dataset.id, 1);
     render();
+    salvarLocalStorage();
+    if(arrayTarefas.length <= 0) {
+        apagarLocalStorage();
+    }
 }
 
 function concluir(tarefa) {
     arrayTarefas[tarefa.dataset.id].Finalizada = true;
-    tarefa.classList.add('concluida');
+    if (arrayTarefas[tarefa.Finalizada] = true) {
+        tarefa.classList.add('concluida');
+    }
+    salvarLocalStorage();
+}
+
+function salvarLocalStorage() {
+    localStorage.clear();
+    localStorage.setItem('tasks', JSON.stringify(arrayTarefas));
+}
+
+function apagarLocalStorage() {
+    localStorage.removeItem('tasks');
+}
+
+const arrayLocalStorage = JSON.parse(localStorage.getItem('tasks'));
+
+if(localStorage.length > 0) {
+    window.onload = function (tarefa) {
+        arrayTarefas = arrayLocalStorage;
+        render();
+    }
 }
 
 btnCriar.addEventListener('click', (e) => {
@@ -96,4 +125,5 @@ btnCriar.addEventListener('click', (e) => {
 
     criar();
     render();
+    salvarLocalStorage();
 })
