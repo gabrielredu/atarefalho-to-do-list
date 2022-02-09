@@ -281,6 +281,11 @@ body {
         height: 48px;
     }
 
+    .concluida .btn.concluir {
+        color: #fff;
+        opacity: .1;
+    }
+
     .sem-tarefa {
         font-size: 24px;
     }
